@@ -1,18 +1,18 @@
-import express from 'express';
+const express = require('express');
 
-import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
-import cors from 'cors';
-import path from 'path';
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
+const cors = require('cors');
+const path = require('path');
 
-import indexRouter from './api/routes/index';
+const indexRouter = require('./api/routes/index');
 
-import ErrorHandler from './ErrorHelpers/ErrorHandler';
-import { sendErrorResponse } from './utils/sendResponses';
-import HttpStatusCode from './ErrorHelpers/Statuscode';
+const ErrorHandler = require('./ErrorHelpers/ErrorHandler');
+const { sendErrorResponse } = require('./utils/sendResponses');
+const HttpStatusCode = require('./ErrorHelpers/Statuscode');
 
 // logs with wiston
-import wiston from './ErrorHelpers/WistonLogger';
+const wiston = require('./ErrorHelpers/WistonLogger');
 
 const app = express();
 // add stream option to morgan
@@ -110,4 +110,4 @@ app.use(async (err, req, res, next) => {
   }
 });
 
-export default app;
+module.exports = app;

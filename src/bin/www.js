@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
-import { createServer } from 'http';
-import app from '../app.js';
+const { createServer } = require('http');
+const app = require('../app.js');
 
 /**
  * Normalize a port into a number, string, or false.

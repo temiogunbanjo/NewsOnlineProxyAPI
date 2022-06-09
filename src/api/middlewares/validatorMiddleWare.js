@@ -3,7 +3,7 @@
  * Description. (This module handles input validation globaly in the app)
  */
 const { body, validationResult } = require("express-validator");
-import { sendErrorResponse } from "../../utils/sendResponses";
+const { sendErrorResponse } = require("../../utils/sendResponses");
 
 /**
  * @class
@@ -93,16 +93,16 @@ class ValidatorMiddleWare {
     };
 
     params.forEach((eachParam) => {
-      // Checks if the parameter from request is in KNOWN_PARAMETERS
+      // Checks if the parameter = require(request is in KNOWN_PARAMETERS
       // eslint-disable-next-line max-len
       const isInKnownParameters =
         KNOWN_PARAMETERS.findIndex(
           (eachKnownParam) => eachKnownParam === eachParam
         ) > -1;
       /* 
-        if parameter from request is in KNOWN_PARAMETERS, add the corresponding 
+        if parameter = require(request is in KNOWN_PARAMETERS, add the corresponding 
         validator to VALIDATION_CHAIN.
-        Else if parameter from request is not in KNOWN_PARAMETERS, check if parameter 
+        Else if parameter = require(request is not in KNOWN_PARAMETERS, check if parameter 
         is just another name for a known parameter (alias) and add returned validator 
         to VALIDATION_CHAIN.
       */
@@ -131,6 +131,6 @@ class ValidatorMiddleWare {
   }
 }
 
-export default ValidatorMiddleWare;
+module.exports =  ValidatorMiddleWare;
 
 // export default validationResult;

@@ -1,7 +1,7 @@
-import express from 'express';
-import ApiRepo from '../ApiRepo';
-import Validator from '../middlewares/validatorMiddleWare';
-// import authmid from '../middlewares/authMid';
+const express = require('express');
+const ApiRepo = require('../ApiRepo');
+const Validator = require('../middlewares/validatorMiddleWare');
+// import authmid = require('../middlewares/authMid';
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.post(
   repo.proxyNewsApi
 );
 
-export default router;
+module.exports = router;

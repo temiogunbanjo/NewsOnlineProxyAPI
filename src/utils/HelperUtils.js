@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 /**
 @class
@@ -49,4 +49,4 @@ class HelperUtils {
   }
 }
 
-export default HelperUtils;
+module.exports = HelperUtils;

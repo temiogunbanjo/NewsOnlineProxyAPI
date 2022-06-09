@@ -4,9 +4,9 @@
 /**
 @module ApiRepo
 * */
-import HttpStatusCode from "../ErrorHelpers/Statuscode";
-import HelperUtils from "../utils/HelperUtils";
-import { sendSuccessResponse, sendErrorResponse } from "../utils/sendResponses";
+const HttpStatusCode = require("../ErrorHelpers/Statuscode");
+const HelperUtils = require("../utils/HelperUtils");
+const { sendSuccessResponse, sendErrorResponse } = require("../utils/sendResponses");
 
 const ph = require("../utils/hash").default;
 
@@ -19,7 +19,7 @@ class ApiRepo {
    * @method
    * @param {Request} req
    * @param {Response} res
-   * @param {import('express').NextFunction} next
+   * @param {const('express').NextFunction} next
    * @returns Response
    */
   async proxyNewsApi(req, res, next) {
@@ -62,4 +62,4 @@ class ApiRepo {
   }
 }
 
-export default ApiRepo;
+module.exports = ApiRepo;

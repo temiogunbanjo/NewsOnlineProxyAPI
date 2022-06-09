@@ -7,7 +7,7 @@
     "dev": "nodemon --exec npx babel-node src/bin/www.js",
     "start": "npm run build && node build/bin/www",
     "generate-docs": "jsdoc -c conf.json",
-    "build": "babel src --copy-files --out-dir build",
+    "build": "npx babel src --copy-files --out-dir build",
     "db:migrate": "npx sequelize db:migrate",
     "db:migrate:test": "npx sequelize db:migrate --env test",
     "db:seed:all:test": "./node_modules/.bin/sequelize db:seed:all --env test",

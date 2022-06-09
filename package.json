@@ -5,9 +5,9 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test npm run db:migrate:test && nyc mocha 'test/**/*.js' --recursive --timeout 60000 --exit",
     "dev": "nodemon --exec npx babel-node src/bin/www.js",
-    "start": "npm run build && node build/bin/www",
+    "preinstall": "npm install -g nodemon",
+    "start": "nodemon --exec npx babel-node src/bin/www.js",
     "generate-docs": "jsdoc -c conf.json",
-    "build": "npx babel src --copy-files --out-dir build",
     "db:migrate": "npx sequelize db:migrate",
     "db:migrate:test": "npx sequelize db:migrate --env test",
     "db:seed:all:test": "./node_modules/.bin/sequelize db:seed:all --env test",
@@ -61,19 +61,5 @@
     "nyc": "^15.1.0",
     "sequelize-cli": "^6.2.0",
     "sinon": "^9.2.1"
-  },
-  "nyc": {
-    "exclude": [
-      "src/models/index.js",
-      "src/models",
-      "tests",
-      "node_modules"
-    ],
-    "require": [
-      "@babel/register"
-    ],
-    "sourceMap": false,
-    "cache": false,
-    "report-dir": "tests/report"
   }
 }

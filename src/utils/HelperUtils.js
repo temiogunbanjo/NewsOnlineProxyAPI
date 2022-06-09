@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /**
 @class
 * */
@@ -40,8 +42,10 @@ class HelperUtils {
     return filters;
   }
 
-  static async fetchUrl(url, options = {method: 'GET'}) {
-    return axios(url, options);
+  static async fetchUrl(url, options = { method: 'GET' }) {
+    console.log(url, options);
+    const response = await axios({ url, ...options });
+    return response;
   }
 }
 

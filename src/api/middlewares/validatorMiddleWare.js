@@ -2,7 +2,6 @@
  *
  * Description. (This module handles input validation globaly in the app)
  */
-import DbValidator from "../../core/data/dbValidator";
 const { body, validationResult } = require("express-validator");
 import { sendErrorResponse } from "../../utils/sendResponses";
 
@@ -11,51 +10,6 @@ import { sendErrorResponse } from "../../utils/sendResponses";
  * @name ValidatorMiddleWare
  */
 class ValidatorMiddleWare {
-  static validateSignUp = [
-    body("email", "please enter a valid email")
-      .exists()
-      .withMessage('email parameter required')
-      .trim()
-      .normalizeEmail()
-      .isEmail(),
-    body("password")
-      .exists()
-      .withMessage('password parameter required')
-      .trim()
-      .escape()
-      .isLength({ min: 8 })
-      .withMessage("passwords length must be between 8 to 24"),
-    body("confirmPassword")
-      .exists()
-      .withMessage('confirmPassword parameter required')
-      .trim()
-      .escape()
-      .custom((value, { req }) => value === req.body.password)
-      .withMessage("password fields do not match"),
-  ];
-
-  static validateProfileUpdate = [
-    body("phone")
-      .optional()
-      .trim()
-      .escape()
-      .isNumeric()
-      .isLength({ min: 8, max: 20 }),
-    body("firstname")
-      .optional()
-      .trim()
-      .escape()
-      .isAlpha("en-US", { ignore: [/\s/g] })
-      .isLength({ min: 3 })
-      .toLowerCase(),
-    body("lastname")
-      .optional()
-      .trim()
-      .escape()
-      .isAlpha("en-US", { ignore: [/\s/g] })
-      .isLength({ min: 3 })
-      .toLowerCase(),
-  ];
 
   /**
    * @param {string} aliasedName
@@ -124,44 +78,18 @@ class ValidatorMiddleWare {
     const VALIDATION_CHAIN = [];
     // KNOWN_PARAMETERS is an array of all defined parameters used in the app
     const KNOWN_PARAMETERS = [
-      "userId",
-      "name",
-      "email",
-      "password"
+      "url",
     ];
 
     // PARAMETER_VALIDATIONS contains all KNOWN_PARAMETERS and their required validations
     const PARAMETER_VALIDATIONS = {
-      userId: body("userId")
+      url: body("url")
         .exists()
-        .withMessage("userId parameter required")
+        .withMessage("url parameter required")
         .notEmpty()
-        .custom((value) => {
-          const containsAlphabetNumber = value.match(/(\w+\d+)+/g) !== null;
-          return containsAlphabetNumber;
-        })
-        .customSanitizer((value) => value.replace(/[–]/g, "-"))
-        .isLength({ min: 36, max: 36 }),
-      name: body("name")
-        .exists()
-        .withMessage("name parameter required")
-        .trim()
-        .escape()
-        .isAlpha("en-US", { ignore: [/\s/g] })
-        .withMessage("only alphabets allowed")
-        .isLength({ min: 3 })
-        .toLowerCase(),
-      password: body("password")
-        .exists()
-        .withMessage("password parameter required")
-        .trim()
-        .escape(),
-      email: body("email")
-        .exists()
-        .withMessage("email parameter required")
-        .normalizeEmail()
-        .isEmail()
-        .withMessage("please enter a valid email")
+        .withMessage("url parameter cannot be empty")
+        .isURL()
+        .withMessage("invalid url parameter"),
     };
 
     params.forEach((eachParam) => {

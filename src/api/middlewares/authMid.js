@@ -6,7 +6,6 @@
 
 import { verifyToken } from '../../utils/tokenProcessor';
 import { sendErrorResponse } from '../../utils/sendResponses';
-import DbValidator from '../../core/data/dbValidator';
 
 /**
  * @param {Request} req

@@ -8,7 +8,7 @@ const router = express.Router();
 const repo = new ApiRepo();
 
 router.post(
-  '/api',
+  '/news',
   Validator.selectValidation('url'),
   Validator.validateRequest,
   repo.proxyNewsApi

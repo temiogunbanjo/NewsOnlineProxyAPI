@@ -6,7 +6,7 @@
     "test": "cross-env NODE_ENV=test npm run db:migrate:test && nyc mocha 'test/**/*.js' --recursive --timeout 60000 --exit",
     "dev": "nodemon --exec npx babel-node src/bin/www.js",
     "preinstall": "npm install -g nodemon",
-    "start": "nodemon --exec npx babel-node src/bin/www.js",
+    "start": "nodemon src/bin/www.js",
     "generate-docs": "jsdoc -c conf.json",
     "db:migrate": "npx sequelize db:migrate",
     "db:migrate:test": "npx sequelize db:migrate --env test",
